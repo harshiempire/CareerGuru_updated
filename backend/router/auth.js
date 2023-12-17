@@ -178,11 +178,4 @@ router.get("/getdata", async (req, res) => {
   }
 });
 
-router.get("/update", async (req, res) => {
-  const data = await Jobs.findOneAndUpdate({email:email});
-  if(data){
-    
-  }
-  console.log("updating data")})
-
 module.exports = router;
