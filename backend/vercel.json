@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "framework": "node",
+
   "name":"backend",
   "builds":[{
     "src":"app.js",
