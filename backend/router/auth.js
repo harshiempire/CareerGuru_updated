@@ -10,7 +10,7 @@ const authenticate = require("../middleware/authenticate");
 //it is working in top to bottom to approach
 router.get("/", (req, res) => {
   
-  res.json("this is app using router");
+  res.send("this is app using router");
 });
 
 // using promises
