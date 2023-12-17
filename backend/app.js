@@ -2,12 +2,19 @@ const express = require("express");
 const app = express();
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
-
+const cors = require("cors");
 dotenv.config({ path: "./config.env" });
 require("./db/conn");
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors(
+  {
+    origin:["https://career-guru-frontend.vercel.app"],
+    methods: ["POST","GET"],
+    credentials: true
+  } 
+))
 
 // const users = require("./models/userSchema")
 
