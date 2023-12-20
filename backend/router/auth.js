@@ -9,7 +9,6 @@ const authenticate = require("../middleware/authenticate");
 
 //it is working in top to bottom to approach
 router.get("/", (req, res) => {
-  
   res.send("this is app using router");
 });
 
@@ -175,6 +174,33 @@ router.get("/getdata", async (req, res) => {
     res.status(200).json(data);
   } catch (err) {
     console.log(err);
+  }
+});
+
+router.post("/update", async (req, res) => {
+  const { email, name, mobilenumber, skills, exp, loc } = req.body;
+
+  const updateFields = {};
+  if (name) updateFields.name = name;
+  if (mobilenumber) updateFields.mobilenumber = mobilenumber;
+  if (skills) updateFields.skills = skills;
+  if (exp) updateFields.exp = exp;
+  if (loc) updateFields.loc = loc;
+  try {
+    const data = await User.findOneAndUpdate({ email: email }, updateFields, {
+      new: true,
+    });
+
+    if (data) {
+      console.log("Updated data:", data);
+      return res.status(200).json({ data });
+    } else {
+      console.log("User not found");
+      return res.status(404).json({ error: "User not found" });
+    }
+  } catch (error) {
+    console.error("Error updating user:", error);
+    return res.status(500).json({ error: "Internal server error" });
   }
 });
 
